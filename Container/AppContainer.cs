@@ -15,19 +15,24 @@ namespace BusBookingSystem.Container
         private readonly IUserRepository _userRepository;
         private readonly IUserService _userService;
         private readonly UserController _userController;
-        private Index _viewIndex;
+        private readonly IBusRepository _busRepository;
+        private readonly IBusService _busService;
+        private readonly BusController _busController;
+
 
         private AppContainer()
         {
             _userRepository = new InMemoryUserRepository();
             _userService = new UserService(_userRepository);
             _userController = new UserController(_userService);
-            _viewIndex = new Index();
+            _busRepository = new InMemoryBusRepository();
+            _busService = new BusService(_busRepository);
+            _busController = new BusController(_busService);
         }
 
-        public Index GetViewIndex()
+        public BusController GetBusController()
         {
-            return _viewIndex;
+            return _busController;
         }
 
         public UserController GetUserController()
