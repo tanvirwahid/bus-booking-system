@@ -19,6 +19,9 @@ namespace BusBookingSystem.Container
         private readonly IBusService _busService;
         private readonly BusController _busController;
 
+        private readonly IScheduleRepository _scheduleRepository;
+        private readonly IScheduleService _scheduleService;
+        private readonly ScheduleController _scheduleController;
 
         private AppContainer()
         {
@@ -28,6 +31,9 @@ namespace BusBookingSystem.Container
             _busRepository = new InMemoryBusRepository();
             _busService = new BusService(_busRepository);
             _busController = new BusController(_busService);
+            _scheduleRepository = new InMemoryScheduleRepository();
+            _scheduleService = new ScheduleService(_busRepository, _scheduleRepository);
+            _scheduleController = new ScheduleController(_scheduleService);
         }
 
         public BusController GetBusController()
@@ -38,6 +44,11 @@ namespace BusBookingSystem.Container
         public UserController GetUserController()
         {
             return _userController;
+        }
+
+        public ScheduleController GetScheduleController()
+        {
+            return _scheduleController;
         }
     }
 }

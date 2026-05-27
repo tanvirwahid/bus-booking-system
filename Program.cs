@@ -16,6 +16,9 @@ class Program
                 Console.WriteLine("2: Display Users");
                 Console.WriteLine("3: Create Bus");
                 Console.WriteLine("4: Display Buses");
+                Console.WriteLine("5: Create Schedule");
+                Console.WriteLine("6: Display Schedules");
+                Console.WriteLine("7: View Schedule Details");
                 Console.WriteLine("0: Exit");
 
                 var instruction = intReader.ReadRequired("Enter your instruction: ");

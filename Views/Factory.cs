@@ -1,6 +1,7 @@
 using BusBookingSystem.Views.Bus;
 using BusBookingSystem.Views.Contracts;
 using BusBookingSystem.Views.Readers;
+using BusBookingSystem.Views.Schedule;
 using BusBookingSystem.Views.User;
 using BusBookingSystem.Views.User.Readers;
 
@@ -12,6 +13,8 @@ namespace BusBookingSystem.Views
         {
             var stringReader = new StringInputReader();
             var intReader = new IntInputReader();
+            var dateTimeReader = new DateTimeReader();
+            var guidReader = new GuidReader();
 
             switch (instruction)
             {
@@ -23,6 +26,12 @@ namespace BusBookingSystem.Views
                     return new CreateBus(intReader);
                 case 4:
                     return new BusList();
+                case 5:
+                    return new ScheduleCreateView(intReader, stringReader, dateTimeReader);
+                case 6:
+                    return new ScheduleList();
+                case 7:
+                    return new ScheduleDetails(guidReader);
                 default:
                     throw new InvalidOperationException("Invalid instruction.");
             }
