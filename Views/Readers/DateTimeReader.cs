@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace BusBookingSystem.Views.Readers
 {
     public class DateTimeReader
@@ -6,11 +8,19 @@ namespace BusBookingSystem.Views.Readers
         {
             while (true)
             {
-                Console.Write(prompt);
+                string format = "yyyy-MM-dd HH:mm";
+                Console.Write($"{prompt} ({format}): ");
 
                 var input = Console.ReadLine();
 
-                if (DateTime.TryParse(input, out var value))
+                if (
+                    DateTime.TryParseExact(
+                       input,
+                       format,
+                       CultureInfo.InvariantCulture,
+                       DateTimeStyles.None,
+                       out var value)
+                    )
                 {
                     return value;
                 }

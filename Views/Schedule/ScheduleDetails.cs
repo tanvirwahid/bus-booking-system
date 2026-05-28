@@ -25,6 +25,11 @@ namespace BusBookingSystem.Views.Schedule
                 .ThenBy(x => x.SeatNumber[1])
                 .ToList();
 
+            Console.WriteLine(schedule);
+            Console.WriteLine("Total Seats: " + schedule.Bus.Seats.Value);
+            Console.WriteLine("Available Seats: " + schedule.AvailableSeats());
+            Console.WriteLine();
+
             PrintSeats(sortedSeats, schedule.Bus.Type);
         }
 

@@ -39,17 +39,17 @@ namespace BusBookingSystem.Entities
             _seats.AddRange(SeatGenerator.Generate(bus.Type, bus.Seats.Value, Id));
         }
 
+        public int AvailableSeats() => _seats.Count(x => x.Status == SeatStatus.Available);
+
         public override string ToString()
         {
             return "ID: " + Id +
-            " Departure City: "
-            + DepartureCity +
-            " Arrival City: "
-            + ArrivalCity +
-            " Departure Time: " +
+            " | " + DepartureCity + " -> " + ArrivalCity +
+            " | " +
             DepartureTime +
-            " Ticket Price: "
-            + TicketPrice.Value +
+            " | "
+            + TicketPrice.Value + " Taka | " +
+            Bus.Type.ToString() +
             " Coach Number: "
             + Bus.CoachNumber.Value;
         }
