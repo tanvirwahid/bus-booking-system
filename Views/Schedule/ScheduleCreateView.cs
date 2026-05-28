@@ -1,7 +1,6 @@
 using BusBookingSystem.Container;
 using BusBookingSystem.Views.Contracts;
 using BusBookingSystem.Views.Readers;
-using BusBookingSystem.Views.User.Readers;
 
 namespace BusBookingSystem.Views.Schedule
 {

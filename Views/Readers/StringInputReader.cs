@@ -1,4 +1,4 @@
-namespace BusBookingSystem.Views.User.Readers
+namespace BusBookingSystem.Views.Readers
 {
     public class StringInputReader
     {

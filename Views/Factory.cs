@@ -1,9 +1,11 @@
 using BusBookingSystem.Views.Bus;
 using BusBookingSystem.Views.Contracts;
+using BusBookingSystem.Views.Invoice;
 using BusBookingSystem.Views.Readers;
 using BusBookingSystem.Views.Schedule;
+using BusBookingSystem.Views.SeatBooking;
+using BusBookingSystem.Views.Ticket;
 using BusBookingSystem.Views.User;
-using BusBookingSystem.Views.User.Readers;
 
 namespace BusBookingSystem.Views
 {
@@ -32,6 +34,14 @@ namespace BusBookingSystem.Views
                     return new ScheduleList();
                 case 7:
                     return new ScheduleDetails(guidReader);
+                case 8:
+                    return new SeatBookingHandler(stringReader, guidReader);
+                case 9:
+                    return new InvoiceList(guidReader);
+                case 10:
+                    return new SeatBookingConfirmationHandler(stringReader, guidReader);
+                case 11:
+                    return new TicketList(guidReader);
                 default:
                     throw new InvalidOperationException("Invalid instruction.");
             }

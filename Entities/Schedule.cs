@@ -39,6 +39,11 @@ namespace BusBookingSystem.Entities
             _seats.AddRange(SeatGenerator.Generate(bus.Type, bus.Seats.Value, Id));
         }
 
+        public Seat? FindSeat(string SeatNumber)
+        {
+            return _seats.FirstOrDefault(x => x.SeatNumber == SeatNumber);
+        }
+
         public int AvailableSeats() => _seats.Count(x => x.Status == SeatStatus.Available);
 
         public override string ToString()
@@ -50,7 +55,7 @@ namespace BusBookingSystem.Entities
             " | "
             + TicketPrice.Value + " Taka | " +
             Bus.Type.ToString() +
-            " Coach Number: "
+            " | Coach Number: "
             + Bus.CoachNumber.Value;
         }
     }

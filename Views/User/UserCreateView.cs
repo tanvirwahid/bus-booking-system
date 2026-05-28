@@ -1,6 +1,6 @@
 using BusBookingSystem.Container;
 using BusBookingSystem.Views.Contracts;
-using BusBookingSystem.Views.User.Readers;
+using BusBookingSystem.Views.Readers;
 using System;
 
 namespace BusBookingSystem.Views.User

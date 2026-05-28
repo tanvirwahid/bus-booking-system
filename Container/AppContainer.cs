@@ -22,6 +22,14 @@ namespace BusBookingSystem.Container
         private readonly IScheduleRepository _scheduleRepository;
         private readonly IScheduleService _scheduleService;
         private readonly ScheduleController _scheduleController;
+        private readonly IInvoiceRepository _invoiceRepository;
+        private readonly ITicketRepository _ticketRepository;
+        private readonly IBookingService _bookingService;
+        private readonly IInvoiceService _invoiceService;
+        private readonly ITicketService _ticketService;
+        private readonly InvoiceController _invoiceController;
+        private readonly TicketController _ticketController;
+        private readonly BookingController _bookingController;
 
         private AppContainer()
         {
@@ -34,6 +42,19 @@ namespace BusBookingSystem.Container
             _scheduleRepository = new InMemoryScheduleRepository();
             _scheduleService = new ScheduleService(_busRepository, _scheduleRepository);
             _scheduleController = new ScheduleController(_scheduleService);
+            _invoiceRepository = new InMemoryInvoiceRepository();
+            _ticketRepository = new InMemoryTicketRepository();
+            _bookingService = new BookingService(
+                _userRepository,
+                _scheduleRepository,
+                _invoiceRepository,
+                _ticketRepository
+            );
+            _invoiceService = new InvoiceService(_invoiceRepository, _userRepository);
+            _ticketService = new TicketService(_userRepository, _ticketRepository);
+            _bookingController = new BookingController(_bookingService);
+            _invoiceController = new InvoiceController(_invoiceService);
+            _ticketController = new TicketController(_ticketService);
         }
 
         public BusController GetBusController()
@@ -49,6 +70,21 @@ namespace BusBookingSystem.Container
         public ScheduleController GetScheduleController()
         {
             return _scheduleController;
+        }
+
+        public TicketController GetTicketController()
+        {
+            return _ticketController;
+        }
+
+        public InvoiceController GetInvoiceController()
+        {
+            return _invoiceController;
+        }
+
+        public BookingController GetBookingController()
+        {
+            return _bookingController;
         }
     }
 }
