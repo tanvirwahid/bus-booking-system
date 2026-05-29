@@ -6,24 +6,22 @@ namespace BusBookingSystem.Entities
         public Guid UserId { get; private set; }
         public Guid ScheduleId { get; private set; }
         public Guid? TicketId { get; private set; }
-        public Guid SeatId { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public Schedule Schedule { get; private set; }
         public User User { get; private set; }
-        public Seat Seat { get; private set; }
         public Price Amount { get; private set; }
         public PaymentStatus PaymentStatus;
+        private List<Seat> _seats;
+        public IReadOnlyCollection<Seat> Seats => _seats.AsReadOnly();
 
-        public Invoice(User user, Schedule schedule, Seat seat)
+        public Invoice(User user, Schedule schedule, List<Seat> seats)
         {
             if (user is null)
                 throw new ArgumentNullException("Invalid User");
 
-            if (Schedule is null)
+            if (schedule is null)
                 throw new ArgumentNullException("Invalid Schedule");
 
-            if (seat is null)
-                throw new ArgumentNullException("Invalid Seat");
 
             Id = Guid.NewGuid();
             UserId = user.Id;
@@ -31,8 +29,7 @@ namespace BusBookingSystem.Entities
             Schedule = schedule;
             User = user;
             PaymentStatus = PaymentStatus.Unpaid;
-            SeatId = seat.Id;
-            Seat = seat;
+            _seats = seats;
             Amount = schedule.TicketPrice;
             CreatedAt = DateTime.UtcNow;
         }
@@ -47,6 +44,16 @@ namespace BusBookingSystem.Entities
 
             PaymentStatus = PaymentStatus.Paid;
             TicketId = ticketId;
+
+            ConfirmSeatBooking(userId);
+        }
+
+        private void ConfirmSeatBooking(Guid userId)
+        {
+            foreach (var seat in _seats)
+            {
+                seat.ConfirmBooking(userId);
+            }
         }
 
         public override string ToString()

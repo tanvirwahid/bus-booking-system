@@ -4,7 +4,7 @@ namespace BusBookingSystem.Views.Readers
     {
         public Guid ReadRequired(string prompt)
         {
-            Console.WriteLine(prompt);
+            Console.Write(prompt);
 
             while (true)
             {

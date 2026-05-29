@@ -12,9 +12,9 @@ namespace BusBookingSystem.Controllers
             _bookingService = bookingService;
         }
 
-        public async Task<Invoice> BookSeatAsync(string email, Guid scheduleId, string seatNumber)
+        public async Task<Invoice> BookSeatAsync(string email, Guid scheduleId, string seatNumbers)
         {
-            return await _bookingService.BookSeatAsync(email, scheduleId, seatNumber);
+            return await _bookingService.BookSeatAsync(email, scheduleId, seatNumbers);
         }
 
         public async Task<Ticket> ConfirmBookingAsync(string userEmail, Guid invoiceId)

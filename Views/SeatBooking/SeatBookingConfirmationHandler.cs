@@ -20,11 +20,11 @@ namespace BusBookingSystem.Views.SeatBooking
 
         public async Task Render()
         {
-            var email = _stringReader.ReadRequired("Enter user email");
-            var scheduleId = _guidReader.ReadRequired("Enter schedule id");
+            var email = _stringReader.ReadRequired("Enter user email: ");
+            var invoiceId = _guidReader.ReadRequired("Enter invoice id: ");
 
             var bookingController = AppContainer.Instance.GetBookingController();
-            var ticket = await bookingController.ConfirmBookingAsync(email, scheduleId);
+            var ticket = await bookingController.ConfirmBookingAsync(email, invoiceId);
 
             Console.WriteLine("Seat booking confirmed.");
             Console.WriteLine("Ticket: ");

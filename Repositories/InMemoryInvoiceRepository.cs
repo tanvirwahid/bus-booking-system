@@ -15,16 +15,6 @@ namespace BusBookingSystem.Repositories
 
         public Task<Invoice> AddAsync(Invoice invoice)
         {
-            var exists = _invoices.Any(
-                i => i.ScheduleId == invoice.ScheduleId
-                    && i.SeatId == invoice.SeatId
-            );
-
-            if (exists)
-            {
-                throw new InvalidOperationException("Invoice with same schedule and seat already exists.");
-            }
-
             _invoices.Add(invoice);
             return Task.FromResult(invoice);
         }

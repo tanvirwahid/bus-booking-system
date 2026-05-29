@@ -23,7 +23,7 @@ namespace BusBookingSystem.Services
             _ticketRepository = ticketRepository;
         }
 
-        public async Task<Invoice> BookSeatAsync(string email, Guid scheduleId, string seatNumber)
+        public async Task<Invoice> BookSeatAsync(string email, Guid scheduleId, string seatNumbers)
         {
             var user = await _userRepository.GetByEmail(new Email(email));
 
@@ -39,16 +39,14 @@ namespace BusBookingSystem.Services
                 throw new InvalidOperationException("Schedule with id " + scheduleId + " does not exist.");
             }
 
-            var seat = schedule.FindSeat(seatNumber);
+            var seatNumberList = seatNumbers
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => x.Trim())
+                    .ToList();
 
-            if (seat == null)
-            {
-                throw new InvalidOperationException("Seat with number " + seatNumber + " does not exist.");
-            }
+            var seats = schedule.BookedSeats(seatNumberList, user.Id);
 
-            seat.Book(user.Id);
-
-            return await _invoiceRepository.AddAsync(new Invoice(user, schedule, seat));
+            return await _invoiceRepository.AddAsync(new Invoice(user, schedule, seats));
         }
 
         public async Task<Ticket> ConfirmBookingAsync(string email, Guid invoiceId)
@@ -64,7 +62,7 @@ namespace BusBookingSystem.Services
                 throw new InvalidOperationException("User not found");
             }
 
-            var ticket = new Ticket(invoice.Schedule, invoice.Seat, invoice.User);
+            var ticket = new Ticket(invoice.Schedule, invoice.Seats, invoice.User);
             invoice.Pay(ticket.Id, user.Id);
 
             return await _ticketRepository.AddAsync(ticket);

@@ -39,12 +39,32 @@ namespace BusBookingSystem.Entities
             _seats.AddRange(SeatGenerator.Generate(bus.Type, bus.Seats.Value, Id));
         }
 
-        public Seat? FindSeat(string SeatNumber)
+        public int AvailableSeats() => _seats.Count(x => x.Status == SeatStatus.Available);
+
+        public List<Seat> BookedSeats(List<string> seatNumbers, Guid userId)
         {
-            return _seats.FirstOrDefault(x => x.SeatNumber == SeatNumber);
+            var seats = FindSeats(seatNumbers, SeatStatus.Available);
+
+            if (seats.Count() != seatNumbers.Count())
+            {
+                throw new ArgumentException("Please select available seats.");
+            }
+
+            foreach (var seat in seats)
+            {
+                seat.Book(userId);
+            }
+
+            return seats;
         }
 
-        public int AvailableSeats() => _seats.Count(x => x.Status == SeatStatus.Available);
+        public List<Seat> FindSeats(List<string> seatNumbers, SeatStatus status)
+        {
+            return _seats.Where(
+                x => seatNumbers.Contains(x.SeatNumber)
+                && x.Status == status
+            ).ToList();
+        }
 
         public override string ToString()
         {

@@ -9,16 +9,6 @@ namespace BusBookingSystem.Repositories
 
         public Task<Ticket> AddAsync(Ticket ticket)
         {
-            var exists = _tickets.Any(
-                t => t.ScheduleId == ticket.ScheduleId
-                && t.SeatId == ticket.SeatId
-            );
-
-            if (exists)
-            {
-                throw new InvalidOperationException("Duplicate ticket");
-            }
-
             _tickets.Add(ticket);
             return Task.FromResult(ticket);
         }

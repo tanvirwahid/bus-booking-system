@@ -21,9 +21,9 @@ namespace BusBookingSystem.Views.SeatBooking
         public async Task Render()
         {
             Console.WriteLine("Book A Seat: ");
-            var email = _stringReader.ReadRequired("Enter user email:");
-            var scheduleId = _guidReader.ReadRequired("Enter schedule id");
-            var seatNumber = _stringReader.ReadRequired("Enter seat number (1A, 1B, 1C etc):");
+            var email = _stringReader.ReadRequired("Enter user email: ");
+            var scheduleId = _guidReader.ReadRequired("Enter schedule id: ");
+            var seatNumber = _stringReader.ReadRequired("Enter seat numbers separated by comma (1A, 1B, 1C etc): ");
 
             var bookingController = AppContainer.Instance.GetBookingController();
             var invoice = await bookingController.BookSeatAsync(email, scheduleId, seatNumber);
