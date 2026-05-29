@@ -35,7 +35,7 @@ namespace BusBookingSystem.Views.Schedule
 
             var scheduleController = AppContainer.Instance.GetScheduleController();
 
-            var schedule = await scheduleController.Create(
+            var schedule = await scheduleController.CreateAsync(
                 coachNumber,
                 departureCity,
                 arrivalCity,

@@ -20,7 +20,7 @@ namespace BusBookingSystem.Services
             return await _scheduleRepository.GetAllAsync();
         }
 
-        public async Task<Schedule> Create(
+        public async Task<Schedule> CreateAsync(
             int coachNumber,
             string departureCity,
             string arrivalCity,

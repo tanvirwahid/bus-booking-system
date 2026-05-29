@@ -12,14 +12,14 @@ namespace BusBookingSystem.Controllers
             _busService = busService;
         }
 
-        public async Task<List<Bus>> GetAll()
+        public async Task<List<Bus>> GetAllAsync()
         {
-            return await _busService.GetAllBuses();
+            return await _busService.GetAllBusesAsync();
         }
 
-        public async Task<Bus> Create(int coachNumber, int type)
+        public async Task<Bus> CreateAsync(int coachNumber, int type)
         {
-            return await _busService.Create(coachNumber, type);
+            return await _busService.CreateAsync(coachNumber, type);
         }
     }
 }

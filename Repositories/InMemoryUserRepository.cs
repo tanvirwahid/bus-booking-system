@@ -19,14 +19,14 @@ namespace BusBookingSystem.Repositories
             return Task.FromResult(_users.ToList());
         }
 
-        public Task<User?> GetByEmail(Email email)
+        public Task<User?> GetByEmailAsync(Email email)
         {
             var user = _users.FirstOrDefault(u => u.Email.Equals(email));
 
             return Task.FromResult(user);
         }
 
-        public Task<User?> GetByMobileNumber(MobileNumber mobileNumber)
+        public Task<User?> GetByMobileNumberAsync(MobileNumber mobileNumber)
         {
             var user = _users.FirstOrDefault(u => u.MobileNumber.Equals(mobileNumber));
 

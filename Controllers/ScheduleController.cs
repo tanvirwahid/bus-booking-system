@@ -17,7 +17,7 @@ namespace BusBookingSystem.Controllers
             return await _scheduleService.GetAllAsync();
         }
 
-        public async Task<Schedule> Create(
+        public async Task<Schedule> CreateAsync(
             int coachNumber,
             string departureCity,
             string arrivalCity,
@@ -25,7 +25,7 @@ namespace BusBookingSystem.Controllers
             DateTime departureTime
         )
         {
-            return await _scheduleService.Create(
+            return await _scheduleService.CreateAsync(
                 coachNumber,
                 departureCity,
                 arrivalCity,
@@ -34,7 +34,7 @@ namespace BusBookingSystem.Controllers
             );
         }
 
-        public async Task<Schedule> GetById(Guid id)
+        public async Task<Schedule> GetByIdAsync(Guid id)
         {
             return await _scheduleService.GetByIdAsync(id);
         }

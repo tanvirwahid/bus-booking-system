@@ -12,14 +12,14 @@ namespace BusBookingSystem.Controllers
             _userService = userService;
         }
 
-        public async Task<User> CreateUser(string fullName, string mobileNumber, string email)
+        public async Task<User> CreateUserAsync(string fullName, string mobileNumber, string email)
         {
-            return await _userService.Create(fullName, mobileNumber, email);
+            return await _userService.CreateAsync(fullName, mobileNumber, email);
         }
 
-        public async Task<List<User>> GetAll()
+        public async Task<List<User>> GetAllASync()
         {
-            return await _userService.getUsers();
+            return await _userService.GetUsersAsync();
         }
 
     }

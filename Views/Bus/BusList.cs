@@ -8,7 +8,7 @@ namespace BusBookingSystem.Views.Bus
         public async Task Render()
         {
             var busController = AppContainer.Instance.GetBusController();
-            var buses = await busController.GetAll();
+            var buses = await busController.GetAllAsync();
 
             Console.WriteLine("Bus List:");
 

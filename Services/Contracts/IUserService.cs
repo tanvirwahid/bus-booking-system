@@ -4,7 +4,7 @@ namespace BusBookingSystem.Services.Contracts
 {
     public interface IUserService
     {
-        Task<User> Create(string fullName, string mobileNumber, string email);
-        Task<List<User>> getUsers();
+        Task<User> CreateAsync(string fullName, string mobileNumber, string email);
+        Task<List<User>> GetUsersAsync();
     }
 }

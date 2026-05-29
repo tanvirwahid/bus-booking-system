@@ -25,7 +25,7 @@ namespace BusBookingSystem.Services
 
         public async Task<Invoice> BookSeatAsync(string email, Guid scheduleId, string seatNumbers)
         {
-            var user = await _userRepository.GetByEmail(new Email(email));
+            var user = await _userRepository.GetByEmailAsync(new Email(email));
 
             if (user == null)
             {
@@ -55,7 +55,7 @@ namespace BusBookingSystem.Services
             if (invoice is null)
                 throw new InvalidOperationException("Invalid invoice");
 
-            var user = await _userRepository.GetByEmail(new Email(email));
+            var user = await _userRepository.GetByEmailAsync(new Email(email));
 
             if (user is null)
             {

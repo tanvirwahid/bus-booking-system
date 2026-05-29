@@ -18,7 +18,7 @@ namespace BusBookingSystem.Views.Schedule
         {
             Guid id = _guidReader.ReadRequired("Enter Schedule Id: ");
             var scheduleController = AppContainer.Instance.GetScheduleController();
-            var schedule = await scheduleController.GetById(id);
+            var schedule = await scheduleController.GetByIdAsync(id);
 
             var sortedSeats = schedule.Seats
                 .OrderBy(x => x.SeatNumber[0])

@@ -14,12 +14,12 @@ namespace BusBookingSystem.Services
             _busRepository = busRepository;
         }
 
-        public async Task<List<Bus>> GetAllBuses()
+        public async Task<List<Bus>> GetAllBusesAsync()
         {
             return await _busRepository.GetAllAsync();
         }
 
-        public async Task<Bus> Create(int coachNumber, int type)
+        public async Task<Bus> CreateAsync(int coachNumber, int type)
         {
             if (!Enum.IsDefined(typeof(BusType), type))
             {

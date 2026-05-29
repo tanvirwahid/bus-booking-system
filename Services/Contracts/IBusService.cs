@@ -4,7 +4,7 @@ namespace BusBookingSystem.Services.Contracts
 {
     public interface IBusService
     {
-        Task<List<Bus>> GetAllBuses();
-        Task<Bus> Create(int coachNumber, int type);
+        Task<List<Bus>> GetAllBusesAsync();
+        Task<Bus> CreateAsync(int coachNumber, int type);
     }
 }

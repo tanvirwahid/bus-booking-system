@@ -13,18 +13,18 @@ namespace BusBookingSystem.Services
             _userRepository = userRepository;
         }
 
-        public async Task<List<User>> getUsers()
+        public async Task<List<User>> GetUsersAsync()
         {
             return await _userRepository.GetAllAsync();
         }
 
-        public async Task<User> Create(string fullName, string mobileNumber, string email)
+        public async Task<User> CreateAsync(string fullName, string mobileNumber, string email)
         {
             var mobile = new MobileNumber(mobileNumber);
             var emailAddress = new Email(email);
 
-            var userWithEmail = await _userRepository.GetByEmail(emailAddress);
-            var userWithMobile = await _userRepository.GetByMobileNumber(mobile);
+            var userWithEmail = await _userRepository.GetByEmailAsync(emailAddress);
+            var userWithMobile = await _userRepository.GetByMobileNumberAsync(mobile);
 
             if (userWithEmail != null || userWithMobile != null)
             {

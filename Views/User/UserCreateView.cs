@@ -26,7 +26,7 @@ namespace BusBookingSystem.Views.User
 
             var userController = AppContainer.Instance.GetUserController();
 
-            var user = await userController.CreateUser(fullName, mobile, email);
+            var user = await userController.CreateUserAsync(fullName, mobile, email);
 
             Console.WriteLine(user);
         }

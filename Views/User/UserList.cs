@@ -9,7 +9,7 @@ namespace BusBookingSystem.Views.User
         {
             var userController = AppContainer.Instance.GetUserController();
 
-            var users = await userController.GetAll();
+            var users = await userController.GetAllASync();
 
             Console.WriteLine("User List:");
 

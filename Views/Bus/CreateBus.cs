@@ -16,16 +16,16 @@ namespace BusBookingSystem.Views.Bus
         public async Task Render()
         {
             var coachNumber = _intReader.ReadRequired("Enter coach number: ");
-            var type = GetType();
+            var type = GetBusType();
 
             var busController = AppContainer.Instance.GetBusController();
-            var bus = await busController.Create(coachNumber, type);
+            var bus = await busController.CreateAsync(coachNumber, type);
 
             Console.WriteLine("Bus created successfully:");
             Console.WriteLine(bus);
         }
 
-        private int GetType()
+        private int GetBusType()
         {
             while (true)
             {

@@ -5,7 +5,7 @@ namespace BusBookingSystem.Services.Contracts
     public interface IScheduleService
     {
         Task<List<Schedule>> GetAllAsync();
-        Task<Schedule> Create(
+        Task<Schedule> CreateAsync(
             int coachNumber,
             string departureCity,
             string arrivalCity,
